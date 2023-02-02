@@ -1,5 +1,6 @@
 package com.af.githubtrends.presentation.trending;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.af.githubtrends.R;
 import com.af.githubtrends.databinding.RepositoryDetailsAdapterBinding;
 import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 
@@ -31,7 +35,7 @@ public class TrendingRepositoriesAdapter extends RecyclerView.Adapter<TrendingRe
 
     @Override
     public void onBindViewHolder(@NonNull TrendingRepositoriesAdapter.ViewHolder holder, int position) {
-        holder.bindView(repositoriesResponseArrayList.get(position));
+        holder.bindView(repositoriesResponseArrayList.get(position), context);
     }
 
     @Override
@@ -46,8 +50,20 @@ public class TrendingRepositoriesAdapter extends RecyclerView.Adapter<TrendingRe
             this.adapterBinding = itemView;
         }
 
-        void bindView(SearchRepositoriesResponse.Items searchRepositoriesResponse){
-            adapterBinding.tvName.setText(searchRepositoriesResponse.getOwner().getLogin());
+        @SuppressLint("SetTextI18n")
+        void bindView(SearchRepositoriesResponse.Items searchRepositoriesResponse,Context context){
+            Glide.with(context).load(searchRepositoriesResponse.getOwner().getAvatar_url())
+                    .placeholder(R.drawable.placeholder)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(adapterBinding.imvInfo);
+            if(searchRepositoriesResponse.getDescription() != null) {
+                adapterBinding.tvDescription.setText(searchRepositoriesResponse.getDescription());
+            }else{
+                adapterBinding.tvDescription.setText("N/A");
+            }
+            adapterBinding.tvOwnerName.setText(searchRepositoriesResponse.getOwner().getLogin()+"");
+            adapterBinding.tvRepoName.setText(searchRepositoriesResponse.getName()+"");
+            adapterBinding.tvStarsCount.setText(searchRepositoriesResponse.getStargazers_count()+"");
         }
 
     }

@@ -25,10 +25,7 @@ public class SearchRepositoryImpl implements SearchRepository {
         if(networkInfo.isNetworkAvailable()){
             searchDatasource.searchRepositoriesDatasource(universalCallback,searchRepositoriesRequest);
         }else {
-            HttpFailure httpFailure = new HttpFailure();
-            httpFailure.setCode(-1);
-            httpFailure.setMessage("No Internet Connection");
-            universalCallback.onFailure(httpFailure);
+            universalCallback.onFailure(new HttpFailure("No Internet Connection",-1));
         }
     }
 

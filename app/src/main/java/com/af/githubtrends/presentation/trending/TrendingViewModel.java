@@ -26,6 +26,9 @@ public class TrendingViewModel extends AndroidViewModel{
         searchRepository.getSearchRepositories(universalCallback, searchRepositoriesRequest);
     }
 
+    void clear(){
+        searchRepository.clear();
+    }
 
 }
 

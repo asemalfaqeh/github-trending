@@ -26,14 +26,15 @@ class RetrofitInstance {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
         //TODO HTTPLoggingInterceptor//
-        httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
+        httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BASIC);
         httpClientBuilder.interceptors().add(httpLoggingInterceptor);
         Gson gson = new GsonBuilder().setLenient().create();
 
         httpClientBuilder.connectTimeout(timeout, TimeUnit.SECONDS)
                 .connectTimeout(timeout, TimeUnit.SECONDS) // 2 minutes
                 .writeTimeout(timeout,TimeUnit.SECONDS)   // 2 minutes
-                .readTimeout(timeout, TimeUnit.SECONDS);  // 2 minutes
+                .readTimeout(timeout, TimeUnit.SECONDS);// 2 minutes
+
         final String baseUrl = "https://api.github.com/";
         retrofit = new Retrofit.Builder().baseUrl(baseUrl)
                 .client(httpClientBuilder.build())

@@ -7,6 +7,14 @@ public class HttpFailure {
     private String message;
     private int code;
 
+    public HttpFailure(){}
+
+    public HttpFailure(String message, int code) {
+        this.message = message;
+        this.code = code;
+    }
+
+
     public String getMessage() {
         return message;
     }
