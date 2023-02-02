@@ -6,4 +6,5 @@ import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
 
 public interface SearchRepository {
     void getSearchRepositories(UniversalCallback<SearchRepositoriesResponse> universalCallback, SearchRepositoriesRequest searchRepositoriesRequest);
+    void clear();
 }

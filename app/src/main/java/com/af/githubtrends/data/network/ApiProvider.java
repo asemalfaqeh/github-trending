@@ -6,8 +6,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ApiProvider {
-
     @GET("search/repositories")
-    Single<SearchRepositoriesResponse> getSearchRepositoriesApi(@Query("order") String order, @Query("q") String q,@Query("sort") String sort);
-
+    Single<SearchRepositoriesResponse> getSearchRepositoriesApi(@Query("order") String order,
+                                                                @Query("q") String q,
+                                                                @Query("sort") String sort);
 }

@@ -4,6 +4,15 @@ public class SearchRepositoriesRequest {
     private String date;
     private String sort;
     private String order;
+    private int page;
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
 
     public String getDate() {
         return date;

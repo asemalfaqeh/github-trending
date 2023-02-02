@@ -1,7 +1,7 @@
-package com.af.githubtrends.data.repository;
+package com.af.githubtrends.data.repository_impl;
 
 import android.content.Context;
-import com.af.githubtrends.data.datasource.remote.SearchDatasource;
+import com.af.githubtrends.data.datasource.remote.SearchRepositoriesDatasource;
 import com.af.githubtrends.data.network.HttpFailure;
 import com.af.githubtrends.data.network.NetworkInfo;
 import com.af.githubtrends.data.network.UniversalCallback;
@@ -12,11 +12,11 @@ import com.af.githubtrends.domain.repository.SearchRepository;
 
 public class SearchRepositoryImpl implements SearchRepository {
 
-    private final SearchDatasource searchDatasource;
+    private final SearchRepositoriesDatasource searchDatasource;
     private final NetworkInfo networkInfo;
 
     public SearchRepositoryImpl(Context context) {
-        searchDatasource = new SearchDatasource();
+        searchDatasource = new SearchRepositoriesDatasource();
         networkInfo = new NetworkInfo(context);
     }
 
@@ -30,5 +30,10 @@ public class SearchRepositoryImpl implements SearchRepository {
             httpFailure.setMessage("No Internet Connection");
             universalCallback.onFailure(httpFailure);
         }
+    }
+
+    @Override
+    public void clear() {
+        searchDatasource.clear();
     }
 }

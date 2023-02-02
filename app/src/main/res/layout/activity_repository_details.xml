@@ -5,5 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.details.RepositoryDetailsActivity">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.03"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.97"
+        android:orientation="vertical"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

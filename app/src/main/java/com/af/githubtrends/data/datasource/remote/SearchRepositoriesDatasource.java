@@ -11,7 +11,8 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.HttpException;
 
-public class SearchDatasource extends NetworkModule {
+
+public class SearchRepositoriesDatasource extends NetworkModule{
 
     public void searchRepositoriesDatasource(UniversalCallback<SearchRepositoriesResponse> callback, SearchRepositoriesRequest searchRepositoriesRequest) {
         compositeDisposable.add(apiProvider.getSearchRepositoriesApi(searchRepositoriesRequest.getOrder(),
