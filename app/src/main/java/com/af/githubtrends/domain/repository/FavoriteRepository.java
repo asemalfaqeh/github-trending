@@ -8,4 +8,5 @@ public interface FavoriteRepository {
     void saveFavorite(SearchRepositoriesResponse.Items repositories);
     void deleteFavorite(int id);
     ArrayList<SearchRepositoriesResponse.Items> getAllFavorites();
+    boolean isItemExists(int id);
 }

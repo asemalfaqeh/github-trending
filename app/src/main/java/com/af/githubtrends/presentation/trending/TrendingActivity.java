@@ -29,6 +29,7 @@ import com.af.githubtrends.databinding.TrendingActivityBinding;
 import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
 import com.af.githubtrends.presentation.favorite.FavoriteActivity;
 import com.af.githubtrends.presentation.repository_details.RepositoryDetailsActivity;
+import com.af.githubtrends.presentation.viewmodel.TrendingViewModel;
 import com.af.githubtrends.utils.DatesFrames;
 
 import java.util.ArrayList;

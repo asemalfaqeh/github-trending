@@ -21,7 +21,7 @@ public class SharedPref {
         return sharePref;
     }
 
-    public void saveString(String objStr,String key) {
+    public void saveString(String objStr, String key) {
         editor.putString(objStr,key);
         editor.apply();
     }

@@ -5,4 +5,5 @@
     <string name="last_month">Last Month</string>
     <string name="github_page_link">Github Page: link</string>
     <string name="forks_num">Forks num</string>
+    <string name="empty_data">Empty Data</string>
 </resources>

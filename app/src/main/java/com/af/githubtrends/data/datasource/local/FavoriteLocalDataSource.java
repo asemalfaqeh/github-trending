@@ -22,7 +22,11 @@ public class FavoriteLocalDataSource {
         String jsonArr = sharedPref.getStringObj(SharedPref.FAV_ITEMS);
         JSONArray jsonArray;
             try {
-                jsonArray = new JSONArray(jsonArr);
+                if (jsonArr.equals("")) {
+                    jsonArray = new JSONArray();
+                }else {
+                    jsonArray = new JSONArray(jsonArr);
+                }
                 String jsonObject = new Gson().toJson(item);
                 jsonArray.put(jsonObject);
                 sharedPref.saveString(SharedPref.FAV_ITEMS, jsonArray.toString());
@@ -34,7 +38,6 @@ public class FavoriteLocalDataSource {
     public ArrayList<SearchRepositoriesResponse.Items> getAllFavoriteItems(){
         ArrayList<SearchRepositoriesResponse.Items> items = new ArrayList<>();
         String jsonArr = sharedPref.getStringObj(SharedPref.FAV_ITEMS);
-        Log.d("TAG", "getAllFavoriteItems: " + jsonArr);
         if (!jsonArr.equals("")){
             try {
                 JSONArray jsonArray = new JSONArray(jsonArr);
@@ -53,14 +56,27 @@ public class FavoriteLocalDataSource {
 
     public void removeItem(int itemId){
         ArrayList<SearchRepositoriesResponse.Items> items = getAllFavoriteItems();
+        JSONArray jsonArray = new JSONArray();
         for (SearchRepositoriesResponse.Items item : items){
             if (item.getId() == itemId){
                 items.remove(item);
+            }else{
+                String jsonObject = new Gson().toJson(item);
+                jsonArray.put(jsonObject);
             }
         }
+        Log.d("ddd", "removeItem: " + jsonArray);
+        sharedPref.saveString(SharedPref.FAV_ITEMS, jsonArray.toString());
+    }
 
-        String jsonArr = new Gson().toJson(items);
-        sharedPref.saveString(jsonArr, SharedPref.FAV_ITEMS);
+    public boolean isExists(int itemId){
+        ArrayList<SearchRepositoriesResponse.Items> items = getAllFavoriteItems();
+        for (SearchRepositoriesResponse.Items item : items){
+            if (item.getId() == itemId){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

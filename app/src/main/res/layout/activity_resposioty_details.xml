@@ -7,8 +7,8 @@
     tools:context=".presentation.repository_details.RepositoryDetailsActivity">
 
     <View
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:id="@+id/view_back"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -127,6 +127,7 @@
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
+             android:gravity="center_vertical"
              android:orientation="horizontal">
              <TextView
                  android:layout_width="wrap_content"
@@ -148,6 +149,21 @@
                  android:textStyle="bold"
                  android:textColor="@color/black"
                  android:id="@+id/tv_forks"/>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginEnd="16dp"
+                 android:layout_marginStart="16dp"
+                 android:gravity="right">
+                 <View
+                     android:layout_width="30dp"
+                     android:layout_height="30dp"
+                     android:id="@+id/view_fav"
+                     android:backgroundTint="@color/dark_grey"
+                     android:background="@drawable/heart"/>
+             </LinearLayout>
+
 
          </LinearLayout>
 

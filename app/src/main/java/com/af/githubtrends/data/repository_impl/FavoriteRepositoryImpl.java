@@ -30,4 +30,9 @@ public class FavoriteRepositoryImpl implements FavoriteRepository {
         return favoriteLocalDataSource.getAllFavoriteItems();
     }
 
+    @Override
+    public boolean isItemExists(int id) {
+        return favoriteLocalDataSource.isExists(id);
+    }
+
 }
