@@ -28,7 +28,7 @@ import com.af.githubtrends.domain.model.request.SearchRepositoriesRequest;
 import com.af.githubtrends.databinding.TrendingActivityBinding;
 import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
 import com.af.githubtrends.presentation.repository_details.RepositoryDetailsActivity;
-import com.af.githubtrends.utils.DatesFrame;
+import com.af.githubtrends.utils.DatesFrames;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -63,7 +63,7 @@ public class TrendingActivity extends AppCompatActivity {
         bindView = TrendingActivityBinding.inflate(getLayoutInflater());
         setContentView(bindView.getRoot());
         homeViewModel = new ViewModelProvider(this).get(TrendingViewModel.class);
-        loadData(DatesFrame.getInstance().getLastDay());
+        loadData(DatesFrames.getInstance().getLastDay());
         makeListeners();
 
     }
@@ -156,19 +156,19 @@ public class TrendingActivity extends AppCompatActivity {
         bindView.radioLd.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 reset();
-                loadData(DatesFrame.getInstance().getLastDay());
+                loadData(DatesFrames.getInstance().getLastDay());
             }
         });
         bindView.radioLw.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 reset();
-                loadData(DatesFrame.getInstance().getLastWeek());
+                loadData(DatesFrames.getInstance().getLastWeek());
             }
         });
         bindView.radioLm.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 reset();
-                loadData(DatesFrame.getInstance().getLastMonth());
+                loadData(DatesFrames.getInstance().getLastMonth());
             }
         });
     }

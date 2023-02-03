@@ -17,6 +17,13 @@
         android:theme="@style/Theme.GithubTrends"
         tools:targetApi="31">
         <activity
+            android:name=".FavoriteActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".presentation.repository_details.RepositoryDetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.GithubTrends.NoActionBar">

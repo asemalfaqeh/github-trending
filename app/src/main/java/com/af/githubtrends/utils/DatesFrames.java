@@ -6,18 +6,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class DatesFrame {
+public class DatesFrames {
 
-    private static DatesFrame datesFrame = null;
+    private static DatesFrames datesFrame = null;
 
-    public static DatesFrame getInstance(){
+    public static DatesFrames getInstance(){
          if (datesFrame == null){
-             datesFrame = new DatesFrame();
+             datesFrame = new DatesFrames();
          }
          return datesFrame;
     }
 
-    public DatesFrame(){}
+    public DatesFrames(){}
 
     private String dateFormat(String inputDate){
         SimpleDateFormat inputFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);

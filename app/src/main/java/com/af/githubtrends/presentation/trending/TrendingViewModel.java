@@ -14,19 +14,17 @@ import com.af.githubtrends.domain.repository.SearchRepository;
 public class TrendingViewModel extends AndroidViewModel{
 
     private final SearchRepository searchRepository;
-    private final FavoriteRepository favoriteRepository;
 
     public TrendingViewModel(Application application) {
         super(application);
         searchRepository = new SearchRepositoryImpl(application);
-        favoriteRepository = new FavoriteRepositoryImpl();
     }
 
     public void getSearchRepositoriesViewModel(UniversalCallback<SearchRepositoriesResponse> universalCallback, SearchRepositoriesRequest searchRepositoriesRequest) {
         searchRepository.getSearchRepositories(universalCallback, searchRepositoriesRequest);
     }
 
-    void clear(){
+    public void clear(){
         searchRepository.clear();
     }
 

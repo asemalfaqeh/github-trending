@@ -9,7 +9,7 @@ public class SharedPref {
     private static final SharedPref sharePref = new SharedPref();
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
-    private static final String FAV_ITEMS = "fav_items";
+    public static final String FAV_ITEMS = "fav_items";
 
     private SharedPref() {}
 
@@ -21,17 +21,17 @@ public class SharedPref {
         return sharePref;
     }
 
-    public void saveString(String placeObjStr) {
-        editor.putString(FAV_ITEMS, placeObjStr);
-        editor.commit();
+    public void saveString(String objStr,String key) {
+        editor.putString(objStr,key);
+        editor.apply();
     }
 
-    public String getPlaceObj() {
-        return sharedPreferences.getString(FAV_ITEMS, "");
+    public String getStringObj(String key) {
+        return sharedPreferences.getString(key, "");
     }
 
-    public void removePlaceObj() {
-        editor.remove(FAV_ITEMS);
+    public void removeObj(String key) {
+        editor.remove(key);
         editor.commit();
     }
 

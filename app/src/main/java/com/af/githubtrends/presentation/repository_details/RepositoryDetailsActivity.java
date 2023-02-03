@@ -1,11 +1,13 @@
 package com.af.githubtrends.presentation.repository_details;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.af.githubtrends.R;
@@ -14,16 +16,21 @@ import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
+
 public class RepositoryDetailsActivity extends AppCompatActivity {
 
     private SearchRepositoriesResponse.Items item;
     private ActivityResposiotyDetailsBinding binding;
+    private FavoriteViewModel favoriteViewModel;
+    private static final String TAG = "RepositoryDetailsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityResposiotyDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
         item = (SearchRepositoriesResponse.Items) getIntent().getSerializableExtra("repository_obj");
         bindView();
     }
@@ -43,6 +50,7 @@ public class RepositoryDetailsActivity extends AppCompatActivity {
         binding.tvUrl.setText(item.getHtml_url()+"");
         binding.viewBack.setOnClickListener(v -> finish());
         binding.tvUrl.setOnClickListener(v -> openUrlBrowser(item.getHtml_url()+""));
+
     }
 
     @Override
