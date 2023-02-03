@@ -3,4 +3,6 @@
     <string name="last_day">Last Day</string>
     <string name="last_week">Last Week</string>
     <string name="last_month">Last Month</string>
+    <string name="github_page_link">Github Page: link</string>
+    <string name="forks_num">Forks num</string>
 </resources>

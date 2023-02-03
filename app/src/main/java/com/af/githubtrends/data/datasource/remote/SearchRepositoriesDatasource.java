@@ -3,6 +3,8 @@ package com.af.githubtrends.data.datasource.remote;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.af.githubtrends.data.network.HttpFailure;
 import com.af.githubtrends.data.network.NetworkModule;
 import com.af.githubtrends.data.network.UniversalCallback;
@@ -22,7 +24,7 @@ import retrofit2.Response;
 
 public class SearchRepositoriesDatasource extends NetworkModule{
     private static final String TAG = "SearchRepositoriesData";
-    public void searchRepositoriesDatasource(UniversalCallback<SearchRepositoriesResponse> callback, SearchRepositoriesRequest searchRepositoriesRequest) {
+    public void searchRepositoriesDatasource(UniversalCallback<SearchRepositoriesResponse> callback, @NonNull SearchRepositoriesRequest searchRepositoriesRequest) {
         compositeDisposable.add(apiProvider.getSearchRepositoriesApi(searchRepositoriesRequest.getOrder(),
                         searchRepositoriesRequest.getDate(),searchRepositoriesRequest.getSort(), searchRepositoriesRequest.getPage()+"")
                 .subscribeOn(Schedulers.io())

@@ -2,9 +2,11 @@ package com.af.githubtrends.domain.model.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class SearchRepositoriesResponse {
+public class SearchRepositoriesResponse implements Serializable{
 
     @Expose
     @SerializedName("items")
@@ -42,7 +44,7 @@ public class SearchRepositoriesResponse {
         this.total_count = total_count;
     }
 
-    public static class Items {
+    public static class Items implements Serializable {
         @Expose
         @SerializedName("created_at")
         private String created_at;
@@ -144,7 +146,7 @@ public class SearchRepositoriesResponse {
         }
     }
 
-    public static class Owner {
+    public static class Owner implements Serializable{
         @Expose
         @SerializedName("avatar_url")
         private String avatar_url;

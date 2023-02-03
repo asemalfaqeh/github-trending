@@ -20,9 +20,15 @@ public class TrendingRepositoriesAdapter extends RecyclerView.Adapter<TrendingRe
 
     private Context context;
     private final ArrayList<SearchRepositoriesResponse.Items> repositoriesResponseArrayList;
+    private final TrendingItemListener trendingItemListener;
 
-    public TrendingRepositoriesAdapter(ArrayList<SearchRepositoriesResponse.Items> searchRepositoriesResponses) {
+    public TrendingRepositoriesAdapter(ArrayList<SearchRepositoriesResponse.Items> searchRepositoriesResponses, TrendingItemListener trendingItemListener) {
         this.repositoriesResponseArrayList = searchRepositoriesResponses;
+        this.trendingItemListener = trendingItemListener;
+    }
+
+    public interface TrendingItemListener{
+        void onItemClickListener(SearchRepositoriesResponse.Items items);
     }
 
     @NonNull
@@ -36,6 +42,7 @@ public class TrendingRepositoriesAdapter extends RecyclerView.Adapter<TrendingRe
     @Override
     public void onBindViewHolder(@NonNull TrendingRepositoriesAdapter.ViewHolder holder, int position) {
         holder.bindView(repositoriesResponseArrayList.get(position), context);
+        holder.adapterBinding.cvInfo.setOnClickListener(v -> trendingItemListener.onItemClickListener(repositoriesResponseArrayList.get(position)));
     }
 
     @Override

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,6 +27,7 @@ import com.af.githubtrends.data.network.UniversalCallback;
 import com.af.githubtrends.domain.model.request.SearchRepositoriesRequest;
 import com.af.githubtrends.databinding.TrendingActivityBinding;
 import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
+import com.af.githubtrends.presentation.repository_details.RepositoryDetailsActivity;
 import com.af.githubtrends.utils.DatesFrame;
 
 import java.util.ArrayList;
@@ -67,14 +69,18 @@ public class TrendingActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {super.onResume();}
+
+    @Override
     protected void onStart() {
         super.onStart();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         homeViewModel.clear();
+        compositeDisposable.clear();
+        super.onDestroy();
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -215,8 +221,9 @@ public class TrendingActivity extends AppCompatActivity {
                 hideProgress();
                 if (httpFailure.getCode() == 403) {
                     isLoading = true;
+                }else if (httpFailure.getCode() == -4) {
+                    Toast.makeText(TrendingActivity.this, httpFailure.getMessage(), Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(TrendingActivity.this, httpFailure.getMessage(), Toast.LENGTH_LONG).show();
             }
         }, searchRepositoriesRequest);
     }
@@ -224,7 +231,13 @@ public class TrendingActivity extends AppCompatActivity {
     private void initRv() {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        trendingRepositoriesAdapter = new TrendingRepositoriesAdapter(itemsArrayList);
+
+        trendingRepositoriesAdapter = new TrendingRepositoriesAdapter(itemsArrayList, items -> {
+            Intent intent = new Intent(this, RepositoryDetailsActivity.class);
+            intent.putExtra("repository_obj", items);
+            startActivity(intent);
+        });
+
         bindView.rvSearch.setAdapter(trendingRepositoriesAdapter);
         bindView.rvSearch.setHasFixedSize(true);
         bindView.rvSearch.setLayoutManager(layoutManager);
@@ -298,7 +311,6 @@ public class TrendingActivity extends AppCompatActivity {
     }
 
     private void hideProgress() {
-        Log.d(TAG, "hideProgress: " + nextPage.get());
         if (nextPage.get() == 1) {
             bindView.progress.setVisibility(View.GONE);
             bindView.rvSearch.setVisibility(View.VISIBLE);
