@@ -27,6 +27,7 @@ import com.af.githubtrends.data.network.UniversalCallback;
 import com.af.githubtrends.domain.model.request.SearchRepositoriesRequest;
 import com.af.githubtrends.databinding.TrendingActivityBinding;
 import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
+import com.af.githubtrends.presentation.favorite.FavoriteActivity;
 import com.af.githubtrends.presentation.repository_details.RepositoryDetailsActivity;
 import com.af.githubtrends.utils.DatesFrames;
 
@@ -171,6 +172,7 @@ public class TrendingActivity extends AppCompatActivity {
                 loadData(DatesFrames.getInstance().getLastMonth());
             }
         });
+        bindView.fab.setOnClickListener(v -> startActivity(new Intent(this, FavoriteActivity.class)));
     }
 
     private void loadData(String date) {
