@@ -33,7 +33,7 @@
                     android:layout_width="84dp"
                     android:layout_height="84dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_launcher_background"
+                    android:background="@color/white"
                     android:layout_margin="2dp"
                     android:id="@+id/imv_info"
                     tools:ignore="ContentDescription" />
@@ -94,7 +94,8 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
 
                     <ImageView
                         android:layout_width="16dp"
@@ -112,7 +113,7 @@
                         android:layout_marginEnd="2dp"
                         android:textStyle="bold"
                         android:textSize="11sp"
-                        android:text="23"
+                        android:text=""
                         android:textColor="@color/purple_500"/>
 
                 </LinearLayout>
