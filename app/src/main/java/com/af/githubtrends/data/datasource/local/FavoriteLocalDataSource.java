@@ -31,6 +31,7 @@ public class FavoriteLocalDataSource {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
     }
 
     public ArrayList<SearchRepositoriesResponse.Items> getAllFavoriteItems(){
