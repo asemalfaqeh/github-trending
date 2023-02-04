@@ -45,6 +45,7 @@ public class RepositoryDetailsActivity extends AppCompatActivity {
         binding.tvStarsCount.setText(item.getStargazers_count()+"");
         binding.tvLanguage.setText("Language: "+item.getLanguage()+"");
         binding.tvUrl.setText(item.getHtml_url()+"");
+        binding.tvDate.setText(item.getCreated_at()+"");
 
     }
 

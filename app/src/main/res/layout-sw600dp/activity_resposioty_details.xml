@@ -167,7 +167,18 @@
 
          </LinearLayout>
 
-         <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_date"
+                android:text=""
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:layout_marginEnd="8dp"
