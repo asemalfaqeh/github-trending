@@ -54,12 +54,12 @@ public class RepositoryDetailsActivity extends AppCompatActivity {
         if (favoriteViewModel.isItemExistsViewModel(item.getId())){
             binding.viewFav.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.purple_500));
         }else {
-            binding.viewFav.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.grey));
+            binding.viewFav.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.dark_grey));
         }
         binding.viewFav.setOnClickListener(v -> {
             if (favoriteViewModel.isItemExistsViewModel(item.getId())) {
                 favoriteViewModel.deleteFavoriteViewModel(item.getId());
-                binding.viewFav.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.grey));
+                binding.viewFav.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.dark_grey));
             } else {
                 favoriteViewModel.saveFavoriteViewModel(item);
                 binding.viewFav.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.purple_500));

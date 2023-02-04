@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.af.githubtrends.R;
 import com.af.githubtrends.databinding.ActivityFavoriteBinding;
-import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
 import com.af.githubtrends.presentation.repository_details.RepositoryDetailsActivity;
 import com.af.githubtrends.presentation.trending.TrendingRepositoriesAdapter;
 import com.af.githubtrends.presentation.viewmodel.FavoriteViewModel;
@@ -45,13 +45,10 @@ public class FavoriteActivity extends AppCompatActivity {
         }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        TrendingRepositoriesAdapter trendingRepositoriesAdapter = new TrendingRepositoriesAdapter(favoriteViewModel.getAllFavorites(), new TrendingRepositoriesAdapter.TrendingItemListener() {
-            @Override
-            public void onItemClickListener(SearchRepositoriesResponse.Items items) {
-                Intent intent = new Intent(FavoriteActivity.this, RepositoryDetailsActivity.class);
-                intent.putExtra("repository_obj", items);
-                startActivity(intent);
-            }
+        TrendingRepositoriesAdapter trendingRepositoriesAdapter = new TrendingRepositoriesAdapter(favoriteViewModel.getAllFavorites(), items -> {
+            Intent intent = new Intent(FavoriteActivity.this, RepositoryDetailsActivity.class);
+            intent.putExtra("repository_obj", items);
+            startActivity(intent);
         });
         binding.rvFavorite.setAdapter(trendingRepositoriesAdapter);
         binding.rvFavorite.setLayoutManager(layoutManager);

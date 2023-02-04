@@ -1,8 +1,6 @@
 package com.af.githubtrends.data.datasource.local;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.af.githubtrends.data.storage.SharedPref;
 import com.af.githubtrends.domain.model.response.SearchRepositoriesResponse;
 import com.google.gson.Gson;
@@ -55,16 +53,21 @@ public class FavoriteLocalDataSource {
     }
 
     public void removeItem(int itemId){
+
         ArrayList<SearchRepositoriesResponse.Items> items = getAllFavoriteItems();
         JSONArray jsonArray = new JSONArray();
-        for (SearchRepositoriesResponse.Items item : items){
-            if (item.getId() == itemId){
-                items.remove(item);
-            }else{
-                String jsonObject = new Gson().toJson(item);
-                jsonArray.put(jsonObject);
+
+        for (int i = 0; i < items.size(); i++){
+            if (items.get(i).getId() == itemId){
+                items.remove(items.get(i));
             }
         }
+
+        for (int i = 0; i < items.size(); i++) {
+            String jsonObject = new Gson().toJson(items.get(i));
+            jsonArray.put(jsonObject);
+        }
+
         sharedPref.saveString(SharedPref.FAV_ITEMS, jsonArray.toString());
     }
 

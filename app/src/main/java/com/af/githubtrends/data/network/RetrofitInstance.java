@@ -1,6 +1,8 @@
 package com.af.githubtrends.data.network;
 
 
+import com.af.githubtrends.BuildConfig;
+import com.af.githubtrends.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.concurrent.TimeUnit;
@@ -25,7 +27,6 @@ class RetrofitInstance {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
-        //TODO HTTPLoggingInterceptor//
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BASIC);
         httpClientBuilder.interceptors().add(httpLoggingInterceptor);
         Gson gson = new GsonBuilder().setLenient().create();
@@ -35,8 +36,7 @@ class RetrofitInstance {
                 .writeTimeout(timeout,TimeUnit.SECONDS)   // 2 minutes
                 .readTimeout(timeout, TimeUnit.SECONDS);// 2 minutes
 
-        final String baseUrl = "https://api.github.com/";
-        retrofit = new Retrofit.Builder().baseUrl(baseUrl)
+        retrofit = new Retrofit.Builder().baseUrl(BuildConfig.baseUrl)
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

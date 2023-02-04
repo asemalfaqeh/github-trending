@@ -3,7 +3,7 @@
 Design architecture
 Model-View-ViewModel (MVVM) is a software design pattern that is structured to separate program logic and user interface controls.
 
-#Technology Stack
+#Android Tech Stack
  
  - #RxJava2
    I use RxJava2 to handle threading and asynchronous operations, 
