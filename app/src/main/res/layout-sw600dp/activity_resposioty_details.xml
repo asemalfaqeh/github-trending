@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.repository_details.RepositoryDetailsActivity">
+
+    <View
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:id="@+id/view_back"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/arrow"
+        android:layout_gravity="left"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nestedScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="@color/white"
+            android:layout_margin="8dp"
+            android:id="@+id/layout"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_weight="0.6">
+
+                <ImageView
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:id="@+id/imv_info"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:gravity="center_vertical"
+                android:layout_weight="1.4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/purple_500"
+                    android:text=""
+                    android:layout_marginStart="4dp"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="4dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/tv_owner_name"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:id="@+id/tv_repo_name"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:backgroundTint="@color/purple_500"
+                        android:background="@android:drawable/btn_star"
+                        android:id="@+id/imv_stars"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_stars_count"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:text=""
+                        android:textColor="@color/purple_500"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center_vertical"
+             android:orientation="horizontal">
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text=""
+                 android:layout_marginEnd="8dp"
+                 android:layout_marginStart="8dp"
+                 android:padding="8dp"
+                 android:textSize="18sp"
+                 android:textStyle="bold"
+                 android:textColor="@color/purple_200"
+                 android:id="@+id/tv_language"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/forks_num"
+                 android:padding="8dp"
+                 android:textSize="18sp"
+                 android:textStyle="bold"
+                 android:textColor="@color/black"
+                 android:id="@+id/tv_forks"/>
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginEnd="16dp"
+                 android:layout_marginStart="16dp"
+                 android:gravity="right">
+                 <View
+                     android:layout_width="30dp"
+                     android:layout_height="30dp"
+                     android:id="@+id/view_fav"
+                     android:backgroundTint="@color/dark_grey"
+                     android:background="@drawable/heart"/>
+             </LinearLayout>
+
+
+         </LinearLayout>
+
+         <TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginEnd="8dp"
+             android:padding="8dp"
+             android:textStyle="bold"
+             android:textColor="@color/teal_700"
+             android:maxLines="1"
+             android:ellipsize="end"
+             android:id="@+id/tv_url"
+             android:layout_marginStart="8dp"
+             android:text=""/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text=""
+                    android:textColor="@color/dark_grey"
+                    android:id="@+id/tv_description" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</LinearLayout>

@@ -65,7 +65,6 @@ public class FavoriteLocalDataSource {
                 jsonArray.put(jsonObject);
             }
         }
-        Log.d("ddd", "removeItem: " + jsonArray);
         sharedPref.saveString(SharedPref.FAV_ITEMS, jsonArray.toString());
     }
 
