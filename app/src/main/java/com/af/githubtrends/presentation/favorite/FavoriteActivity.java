@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-import com.af.githubtrends.R;
 import com.af.githubtrends.databinding.ActivityFavoriteBinding;
 import com.af.githubtrends.presentation.repository_details.RepositoryDetailsActivity;
 import com.af.githubtrends.presentation.trending.TrendingRepositoriesAdapter;

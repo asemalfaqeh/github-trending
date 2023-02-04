@@ -30,13 +30,4 @@ public class SharedPref {
         return sharedPreferences.getString(key, "");
     }
 
-    public void removeObj(String key) {
-        editor.remove(key);
-        editor.commit();
-    }
-
-    public void clearAll() {
-        editor.clear();
-        editor.commit();
-    }
 }

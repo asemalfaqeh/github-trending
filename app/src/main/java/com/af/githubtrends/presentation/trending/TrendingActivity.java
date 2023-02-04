@@ -115,7 +115,9 @@ public class TrendingActivity extends AppCompatActivity {
                         filteredArrList.addAll(searchList);
                         itemsArrayList.clear();
                         itemsArrayList.addAll(filteredArrList);
-                        trendingRepositoriesAdapter.notifyDataSetChanged();
+                        if (trendingRepositoriesAdapter != null) {
+                            trendingRepositoriesAdapter.notifyDataSetChanged();
+                        }
                     }else if (query.length() > 3){
                         for (SearchRepositoriesResponse.Items item : searchList) {
                             if (item.getOwner().getLogin().toLowerCase().contains(query.toLowerCase())) {
@@ -124,7 +126,9 @@ public class TrendingActivity extends AppCompatActivity {
                         }
                         itemsArrayList.clear();
                         itemsArrayList.addAll(filteredArrList);
-                        trendingRepositoriesAdapter.notifyDataSetChanged();
+                        if (trendingRepositoriesAdapter != null) {
+                            trendingRepositoriesAdapter.notifyDataSetChanged();
+                        }
                     }
 
 
@@ -224,6 +228,7 @@ public class TrendingActivity extends AppCompatActivity {
                 hideProgress();
                 if (httpFailure.getCode() == 403) {
                     isLoading = true;
+                    Toast.makeText(TrendingActivity.this, httpFailure.getMessage()+"", Toast.LENGTH_SHORT).show();
                 }else if (httpFailure.getCode() == -4) {
                     Toast.makeText(TrendingActivity.this, httpFailure.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -265,52 +270,61 @@ public class TrendingActivity extends AppCompatActivity {
 
     private void getLastPage(String link) {
 
-        String[] parts = link.split(",");
+        if (link != null) {
+            String[] parts = link.split(",");
 
-        for (String part : parts) {
-            int relIndex = part.indexOf("rel=") + 5;
-            int endRelIndex = part.lastIndexOf("\"");
-            int pageIndex = part.indexOf("page=") + 5;
-            int endPageIndex = part.indexOf(">;");
+            for (String part : parts) {
+                int relIndex = part.indexOf("rel=") + 5;
+                int endRelIndex = part.lastIndexOf("\"");
+                int pageIndex = part.indexOf("page=") + 5;
+                int endPageIndex = part.indexOf(">;");
 
-            if (endRelIndex != -1 && endPageIndex != -1) {
-                String rel = part.substring(relIndex, endRelIndex);
+                if (endRelIndex != -1 && endPageIndex != -1) {
+                    String rel = part.substring(relIndex, endRelIndex);
 
-                if (rel.equals("last")) {
-                    String page = part.substring(pageIndex, endPageIndex);
-                    lastPage.set(Integer.parseInt(page));
-                    break;
+                    if (rel.equals("last")) {
+                        String page = part.substring(pageIndex, endPageIndex);
+                        lastPage.set(Integer.parseInt(page));
+                        break;
+                    }
+
                 }
-
             }
         }
     }
 
     private void getNextPage(String link) {
-        String[] parts = link.split(",");
-        for (String part : parts) {
-            int relIndex = part.indexOf("rel=") + 5;
-            int endRelIndex = part.lastIndexOf("\"");
-            int pageIndex = part.indexOf("page=") + 5;
-            int endPageIndex = part.indexOf(">;");
+        if (link != null) {
+            String[] parts = link.split(",");
+            for (String part : parts) {
+                int relIndex = part.indexOf("rel=") + 5;
+                int endRelIndex = part.lastIndexOf("\"");
+                int pageIndex = part.indexOf("page=") + 5;
+                int endPageIndex = part.indexOf(">;");
 
-            if (endRelIndex != -1 && endPageIndex != -1) {
-                String rel = part.substring(relIndex, endRelIndex);
+                if (endRelIndex != -1 && endPageIndex != -1) {
+                    String rel = part.substring(relIndex, endRelIndex);
 
-                if (rel.equals("next")) {
-                    String page = part.substring(pageIndex, endPageIndex);
-                    nextPage.set(Integer.parseInt(page));
-                    break;
+                    if (rel.equals("next")) {
+                        String page = part.substring(pageIndex, endPageIndex);
+                        nextPage.set(Integer.parseInt(page));
+                        break;
+                    }
+
                 }
-
             }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void reset() {
+        bindView.rvSearch.getRecycledViewPool().clear();
         nextPage.set(1);
         lastPage.set(0);
         itemsArrayList.clear();
+        if (trendingRepositoriesAdapter != null) {
+            trendingRepositoriesAdapter.notifyDataSetChanged();
+        }
     }
 
     private void hideProgress() {
